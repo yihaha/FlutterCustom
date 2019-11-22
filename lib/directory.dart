@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttercustom/textbuttion.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'animation/tween1.dart';
+import 'animation/animadire.dart';
 import 'utils/route_util.dart';
 
 class DirectoryPage extends StatelessWidget {
@@ -50,7 +50,8 @@ class DirectoryPage extends StatelessWidget {
   Function onClickToPage(BuildContext context, String content, int index) =>
       () {
         showToast(content);
-        RouteUtil.push(context, TweenAni1());
+        RouteUtil.push(context, AnimationDirectory());
+
       };
 
   void showToast(String content) {
