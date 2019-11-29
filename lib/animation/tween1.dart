@@ -29,8 +29,15 @@ class _TweenAni1 extends State<TweenAni1> with SingleTickerProviderStateMixin {
 //        }
 //      });
     ///并行动画
-    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
-
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeIn)
+      ..addStatusListener((status) {
+        print('$status');
+        if (status == AnimationStatus.completed) {
+          _controller.reverse();
+        } else if (status == AnimationStatus.dismissed) {
+          _controller.forward();
+        }
+      });
     _controller.forward(); //开始动画
   }
 
@@ -90,7 +97,7 @@ class AnimatedRed extends AnimatedWidget {
 ///AnimatedWidget方式 并行动画
 class AnimatedRed2 extends AnimatedWidget {
   final _opacityTween = Tween<double>(begin: 0.1, end: 1.0);
-  final _sizeTween = Tween<double>(begin: 0.0, end: 300.0);
+  final _sizeTween = Tween<double>(begin: 20.0, end: 188.0);
 
   AnimatedRed2(Animation<double> animation) : super(listenable: animation);
 

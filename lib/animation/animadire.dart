@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fluttercustom/animation/stagger_animation.dart';
+import 'package:fluttercustom/animation/tween1.dart';
 import 'package:fluttercustom/utils/route_util.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../directory.dart';
 import '../textbuttion.dart';
+import 'hero_animation.dart';
 
 class AnimationDirectory extends StatefulWidget {
   @override
@@ -28,27 +32,39 @@ class AnimaDirState extends State<AnimationDirectory> {
           child: Column(
             children: <Widget>[
               TextButtion(
-                "动画1",
-//                onClick: onClickToPage(context, directoryList[0], 0),
+                "普通动画",
+                onClick: onClickToPage(context, "普通动画", TweenAni1()),
               ),
               SizedBox(
                 height: 25,
               ),
               TextButtion(
-                "动画1",
+                "路由跳转动画",
 //                onClick: onClickToPage(context, directoryList[1], 1),
+                onClick: () {
+                  Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                          transitionDuration: Duration(milliseconds: 666),
+                          pageBuilder: (context, animation, animation2) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: DirectoryPage(),
+                            );
+                          }));
+                },
               ),
               SizedBox(height: 25),
               TextButtion(
-                "动画1",
-//                onClick: onClickToPage(context, directoryList[2], 2),
+                "Hero动画",
+                onClick: onClickToPage(context, "Hero动画", HeroAniPage()),
               ),
               SizedBox(
                 height: 25,
               ),
               TextButtion(
-                "动画1",
-//                onClick: onClickToPage(context, directoryList[3], 3),
+                "交织动画",
+                onClick: onClickToPage(context, "交织动画", StaggerRoute()),
               ),
               SizedBox(
                 height: 25,
